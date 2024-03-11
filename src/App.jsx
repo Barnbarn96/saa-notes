@@ -10,6 +10,7 @@ import cluster from './assets/cluster.png';
 import spread from './assets/spread.png';
 import partition from './assets/partition.png';
 import customEndpoint from './assets/aurora-custom-endpoint.png';
+import elasticache from './assets/elasticache.png';
 import './index.css';
 
 function MainValues({ datas, onItemClick }) {
@@ -40,6 +41,7 @@ const imageMap = {
   spread: spread,
   partition: partition,
   customEndpoint: customEndpoint,
+  elasticache: elasticache,
   // Add more image mappings as needed
 };
 
@@ -135,25 +137,41 @@ function App() {
       description: '\n\n<ul>\n<li>Item 1</li>\n<li>Item 2</li>\n</ul>'
     }, {
       title: 'NLB',
+
       description: '\n\n<ul>\n<li>Item 1</li>\n<li>Item 2</li>\n</ul>'
     }, {
       title: 'GWLB',
       description: '\n\n<ul>\n<li>Item 1</li>\n<li>Item 2</li>\n</ul>'
     }, {
       title: 'ASG',
-      description: '\n\n<ul>\n<li>Item 1</li>\n<li>Item 2</li>\n</ul>'
+      description: 'n<li></li>'
     }]
   }, {
     main: 'RDS + Aurora + ElastiCache',
     child: [{
       title: 'RDS',
-      description: 'Cannot SSH into instances\nUp to 15 read replicas. Replication is aysnc (eventual consistency)\nRDS multi AZ (disaster recovery): '
+      description: 'Cannot SSH into instances\nUp to 15 read replicas. Replication is aysnc (eventual consistency)\nRDS multi AZ (disaster recovery): sync replication'
     }, {
       title: 'Aurora',
-      description: 'Aurora scales automatically in increments of 10GB, up to 128TB \n[img]customEndpoint'
+      description: 'Aurora scales automatically in increments of 10GB, up to 128TB \n[img]customEndpoint\nGlobal Aurora\n<ul>\n<li>Aurora Cross Region Read Replicas (disaster recovery)</li>\n<li>Aurora Global Database: Up to 16 Read Replicas, decrease latency</li>\n</ul> '
+    }, {
+      title: 'RDS & Aurora Backup',
+      description: '[bold]RDS Backup\nAutomated Backups:\n\n<ul>\n<li>Daily full backup of the db</li>\n<li>Transaction logs are backed-up by RDS every 5 minutes</li>\n<li>Restore to any point in time (oldest backup to 5 minutes ago)</li>\n<li>1 to 35 days retention (can be disabled)</li>\n</ul>\nManual DB snapshots\n\n<ul>\n<li>Manually triggered by user</li>\n<li>Retention of backup as long as you want</li>\n</ul>\n[bold]Aurora Backup\nAutomated Backups:\n\n<ul>\n<li>1 to 35 days retention (cannot be disabled)</li>\n<li>point-in-time recovery in that timeframe</li>\n</ul>\nManual DB snapshots\n\n<ul>\n<li>Manually triggered by user</li>\n<li>Retention of backup as long as you want</li>\n</ul>\n[bold]RDS & Auora Restore options\nRestoring a RDS/Aurora backup or snapshot creates a new database\nRestoring MySQL RDS database from S3\n\n<ul>\n<li>Create backup of on-premise db</li>\n<li>Store it on S3</li>\n<li>Restore the backup file onto new RDS instance running MySQL</li>\n</ul>\n\nRestoring MySQL Aurora cluster from S3\n\n<ul>\n<li>Create backup of on-premise db using Percona XtraBackup</li>\n<li>Store it on S3</li>\n<li>Restore the backup file onto new Aurora cluster  running MySQL</li>\n</ul>\n[bold]Aurora Database cloning\n\n<ul>\n<li>Create a new Aurora DB Cluster from an existing one</li>\n<li>Faster than snapshot & restore</li>\n<li>Copy-on-write protocol</li>\n<li>Useful to create "staging" db from "production"</li>\n</ul>'
     }, {
       title: 'ElactiCache',
-      description: 's2'
+      description: '[img]elasticache\n[bold]Patterns for ElastiCache\n\n<ul>\n<li>Lazy Loading: All read data is cached, data can be stale in cache</li>\n<li>Write Through: Adds/update data in cahce when written to DB (no stale data)</li>\n<li>Session Store: Store temporary session data in cahce (using TTL)</li>\n</ul>\n[bold]Redis Sorted sets guarantee uniqueness and element ordering'
+    }]
+  }, {
+    main: 'Route 53',
+    child: [{
+      title: 'IDK want do anot',
+      description: '\n\n<ul>\n<li>Item 1</li>\n<li>Item 2</li>\n</ul>'
+    }]
+  }, {
+    main: 'S3',
+    child: [{
+      title: 'Versioning',
+      description: '\n\n<ul>\n<li></li>\n<li>Item 2</li>\n</ul>'
     }]
   }
   ];
