@@ -9,6 +9,7 @@ import * as React from 'react'
 import cluster from './assets/cluster.png';
 import spread from './assets/spread.png';
 import partition from './assets/partition.png';
+import customEndpoint from './assets/aurora-custom-endpoint.png';
 import './index.css';
 
 function MainValues({ datas, onItemClick }) {
@@ -38,6 +39,7 @@ const imageMap = {
   cluster: cluster,
   spread: spread,
   partition: partition,
+  customEndpoint: customEndpoint,
   // Add more image mappings as needed
 };
 
@@ -59,7 +61,10 @@ function parseDescription(description) {
       const imagePath = imageMap[imageName];
       if (imagePath) {
         elements.push(<img key={index} src={imagePath} alt={`Image ${index}`} className="image-style" />);
-      } ``
+      }
+    } else if (line.startsWith('[bold]')) {
+      const boldText = line.substring(6); // Remove '[bold]' prefix
+      elements.push(<p key={index}><strong>{boldText}</strong></p>);
     } else if (inList) {
       const listItem = line.trim().replace(/<\/?li>/g, '');
       listItems.push(<li key={listItem}>{listItem}</li>);
@@ -102,7 +107,7 @@ function App() {
       description: 'Spot Fleets = set of Spot Instances + (optional) On-Demand Instances \nStrategies to allocate Spot Instances: \n\n<ul>\n<li>lowestPrice: from pool with the lowest price (cost optimization, short workload)</li>\n<li>diversified: distributed across all pools (great for availability, long workloads)</li>\n<li>capacityOptimized: pool with the optimal capacity for the number of instances</li>\n<li>priceCapacityOptimized (recommended): pools with the highest capacity available, then select the pool with the lowest price (best choice for most workloads)</li>\n</ul>\n Spot Fleet allows us to automatically request Spot Instances with the lowest price'
     }, {
       title: 'EC2 Placement Groups',
-      description: 'Cluster - clusters instances into a low-latency group in a single AZ\n[img]cluster\n\n<ul>\n</ul>\nSpread - spreads instances across underlying hardware (max 7 instances per group across AZ) -critical applicaitons\n[img]spread\nPatrtition - spreads instances across many different partitions (rely on different sets of racks) within an AZ. Scales to 100s of EC2 instances per group (Hadoop, Cassandra, Kafka)\n[img]partition'
+      description: 'Cluster - clusters instances into a low-latency group in a single AZ\n[img]cluster\n\n<ul>\n</ul>\nSpread - spreads instances across underlying hardware (max 7 instances per group across AZ) -critical applications\n[img]spread\nPatrtition - spreads instances across many different partitions (rely on different sets of racks) within an AZ. Scales to 100s of EC2 instances per group (Hadoop, Cassandra, Kafka)\n[img]partition'
     }]
   }, {
     main: 'EC2 Instance Storage',
@@ -139,13 +144,15 @@ function App() {
       description: '\n\n<ul>\n<li>Item 1</li>\n<li>Item 2</li>\n</ul>'
     }]
   }, {
-    main: 'State',
+    main: 'RDS + Aurora + ElastiCache',
     child: [{
-      title: 'state1',
-      description: 's1'
-    },
-    {
-      title: 'state2',
+      title: 'RDS',
+      description: 'Cannot SSH into instances\nUp to 15 read replicas. Replication is aysnc (eventual consistency)\nRDS multi AZ (disaster recovery): '
+    }, {
+      title: 'Aurora',
+      description: 'Aurora scales automatically in increments of 10GB, up to 128TB \n[img]customEndpoint'
+    }, {
+      title: 'ElactiCache',
       description: 's2'
     }]
   }
@@ -167,7 +174,6 @@ function App() {
   };
 
   function handleSelectChild(value) {
-    // console.log(value)
     setSelectedChild(value); // Update selected value when a child is clicked
   };
 
