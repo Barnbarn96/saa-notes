@@ -37,6 +37,8 @@ import ec2Tenancy from './assets/ec2Tenancy.png';
 import guardDuty from './assets/guardDuty.png';
 import inspector from './assets/inspector.png';
 import macie from './assets/macie.png';
+
+import PdfLink from './components/Certificate';
 import './index.css';
 
 function MainValues({ datas, onItemClick }) {
@@ -400,6 +402,7 @@ function App() {
   return (
     <div>
       <Header />
+      <PdfLink/ >
       <main>
         <section id="core-concepts">
           <h2>Core Concepts</h2>
