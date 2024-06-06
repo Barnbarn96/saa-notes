@@ -11,6 +11,32 @@ import spread from './assets/spread.png';
 import partition from './assets/partition.png';
 import customEndpoint from './assets/aurora-custom-endpoint.png';
 import elasticache from './assets/elasticache.png';
+import globalAccelerator from './assets/global-accelerator.png';
+import globalAcceleratorVsCloudFront from './assets/globalAcceleratorVsCoudFront.png';
+import snowballGlacier from './assets/snowballGlacier.png';
+import transFam from './assets/transferFam.png';
+import dataSync from './assets/dataSync.png';
+import kinesis from './assets/kinesis.png';
+import sqsSnsKinesis from './assets/sqsSnsKinesis.png';
+import mq from './assets/mq.png';
+import ec2LaunchType from './assets/ec2LaunchType.png';
+import fargate from './assets/fargate.png';
+import ecsRoles from './assets/ecsRoles.png';
+import appRunner from './assets/appRunner.png';
+import lambdaLimit from './assets/lambdaLimit.png';
+import db from './assets/db.png';
+import dynamoDB from './assets/dynamoDB.png';
+import dynamoDbStream from './assets/dynamoDbStream.png';
+import dynamoDBGlobal from './assets/dynamoDBGlobal.png';
+import dynamoDbDR from './assets/dynamoDbDR.png';
+import glue from './assets/glue.png';
+import lakeFormation from './assets/lakeFormation.png';
+import route53Types from './assets/route53Types.png';
+import cnameVsalias from './assets/cnameVsalias.png';
+import ec2Tenancy from './assets/ec2Tenancy.png';
+import guardDuty from './assets/guardDuty.png';
+import inspector from './assets/inspector.png';
+import macie from './assets/macie.png';
 import './index.css';
 
 function MainValues({ datas, onItemClick }) {
@@ -42,6 +68,32 @@ const imageMap = {
   partition: partition,
   customEndpoint: customEndpoint,
   elasticache: elasticache,
+  globalAccelerator: globalAccelerator,
+  globalAcceleratorVsCloudFront: globalAcceleratorVsCloudFront,
+  snowballGlacier: snowballGlacier,
+  transFam: transFam,
+  dataSync: dataSync,
+  kinesis: kinesis,
+  sqsSnsKinesis: sqsSnsKinesis,
+  mq: mq,
+  ec2LaunchType: ec2LaunchType,
+  fargate: fargate,
+  ecsRoles: ecsRoles,
+  appRunner: appRunner,
+  lambdaLimit: lambdaLimit,
+  db: db,
+  dynamoDB: dynamoDB,
+  dynamoDbStream: dynamoDbStream,
+  dynamoDBGlobal: dynamoDBGlobal,
+  dynamoDbDR: dynamoDbDR,
+  glue: glue,
+  lakeFormation: lakeFormation,
+  route53Types: route53Types,
+  cnameVsalias: cnameVsalias,
+  ec2Tenancy: ec2Tenancy,
+  guardDuty: guardDuty,
+  inspector: inspector,
+  macie: macie,
   // Add more image mappings as needed
 };
 
@@ -103,7 +155,7 @@ function App() {
       description: 'On-Demand Instances - short-term and un-interrupted workload, predictable pricing, pay by second \nReserved (1 & 3 years) - \n\n<ul>\n<li>Reserved Instances - long workloads</li>\n<li>Convertible Reserved Instances - long workloads with flexible instances<li>\n</ul> \n*Recommended for steady-state usage applications (database)\nSavings Plans (1 & 3 years) - commitment to an amount of usage, long workload \nSpot Instances - short workloads, cheap, can lose instance (less reliable) \n Dedicated Hosts - book an entire physical server, control instance placement \n\n<ul>\n<li>Address compliance requirements and use existing server-bound software licenses</li>\n</ul>\nDedicated Instances - no other customer will share your hardware \nCapacity Reservations - reserve capacity in a specific AZ for any duration'
     }, {
       title: 'How to Terminate Spot Instances?',
-      description: 'Can only cancel Spot Instance Requests that are open, active or disabled. Cancelling a Spot Request does not terminate instances. Must first cancel a Spot Request, and then terminate the associated Spot Instaances'
+      description: 'Can only cancel Spot Instance Requests that are open, active or disabled. Cancelling a Spot Request does not terminate instances. Must first cancel a Spot Request, and then terminate the associated Spot Instaances\n If the request is persistent, the request is opened again after your Spot Instance is interrupted. If the request is persistent and you stop your Spot Instance, the request only opens after you start your Spot Instance.'
     }, {
       title: 'Spot Fleets',
       description: 'Spot Fleets = set of Spot Instances + (optional) On-Demand Instances \nStrategies to allocate Spot Instances: \n\n<ul>\n<li>lowestPrice: from pool with the lowest price (cost optimization, short workload)</li>\n<li>diversified: distributed across all pools (great for availability, long workloads)</li>\n<li>capacityOptimized: pool with the optimal capacity for the number of instances</li>\n<li>priceCapacityOptimized (recommended): pools with the highest capacity available, then select the pool with the lowest price (best choice for most workloads)</li>\n</ul>\n Spot Fleet allows us to automatically request Spot Instances with the lowest price'
@@ -144,7 +196,7 @@ function App() {
       description: '\n\n<ul>\n<li>Item 1</li>\n<li>Item 2</li>\n</ul>'
     }, {
       title: 'ASG',
-      description: 'n<li></li>'
+      description: '[img]ec2Tenancy\n\n<ul>\n<li>Item 1</li>\n<li>Item 2</li>\n</ul>'
     }]
   }, {
     main: 'RDS + Aurora + ElastiCache',
@@ -165,13 +217,141 @@ function App() {
     main: 'Route 53',
     child: [{
       title: 'IDK want do anot',
-      description: '\n\n<ul>\n<li>Item 1</li>\n<li>Item 2</li>\n</ul>'
+      description: '[img]route53Types\n\n<ul>\n<li>Item 1</li>\n<li>Item 2</li>\n</ul>'
+    }, {
+      title: 'Cname vs Alias',
+      description: '[img]cnameVsalias\n[bold]**Cannot set ALIAS record for EC2 DNS name'
     }]
   }, {
     main: 'S3',
     child: [{
       title: 'Versioning',
-      description: '\n\n<ul>\n<li></li>\n<li>Item 2</li>\n</ul>'
+      description: '\n\n<ul>\n<li>Enabled at bucket level</li>\n<li>Same key overwrite will change the "version": 1,2,3....</li>\n<li>Protect against unintended deletes (ability to restore a version)</li>\n<li>Easy roll back to previous version</li>\n<li>**Any file that is not versioned prior to enable versioning will have version "null"</li>\n<li>**Suspending versioning does not delete the previous versions</li>\n</ul>'
+    }, {
+      title: 'Replication (CRR & SRR)',
+      description: 'Must enable versioning in source\nBuckets can be in different AWS accounts\nCopying is async\nMust give proper IAM permissions to S3\nUse case:\n\n<ul>\n<li>Cross-Region-Replication  (CRR) - compliance, lower latency access, replication across accounts</li>\n<li>Same-Region-Replication (SRR) - log aggregation, live replication between production and test accounts</li>\n</ul>\n[bold]***Notes***\nOnly new objects are replicated after enabling replication. Use S3 Batch Replication to replicate existing objects\nFor DELETE operations\n\n<ul>\n<li>Can replicate delete markers from source to target (optional setting)</li>\n<li>Deletions with a version ID are not replicated (to avoid malicious deletes)</li>\n</ul>\nThere is no chaining of replication\n\n<ul>\n<li>If Bucket 1 replicate into Bucket 2, which is replicated into Bucket 3, objects created in Bucket 1 are not replicated to Bucket 3</li>\n</ul>'
+    }, {
+      title: 'S3 Storage Classes Overview',
+      description: '[bold]General Purpose\n\n<ul>\n<li>99.99% availability</li>\n<li>Used for frequendtly accessed data</li>\n<li>Low latency and high throughput</li>\n<li>Sustain 2 concurrent facility failures</li>\n<li>Use case: Big Data analytics, mobile & gaming applications, content distribution...</li>\n</ul>\n[bold]Infreqent Access\nFor data that is less frequently accessed, but requires rapid access when needed\nLower cost than S3 Standard\n[bold]Amazon S3 Standard-Infrequent Access (S3 Standard-IA)\n\n<ul>\n<li>99.9% Availability</li>\n<li>Use case: Disaster Recovery, backups</li>\n</ul>\n[bold]Amazon S3 One Zone-Infrequent Access (S3 One-Zone IA)\n\n<ul>\n<li>High durability (99.9999999%) in a single AZ; data lost when AZ is destroyed, 99.95% Availability</li>\n<li>Use case: Storing secondary backup copies of on-premise data, or data you can recreate </li>\n</ul>'
+    }, {
+      title: 'S3 Lifecycle Rules',
+      description: 'Transition Actions - configure objects to transition to another storage class\n\n<ul>\n<li>Move objects to Standard IA class 60 days after creation</li>\n<li>Move to Glacier for archiving after 6 months</li>\n</ul>\nExpiration Actions - configure objects to expire (delete) after some time\n\n<ul>\n<li>Access log files can be set to delete after 365 days</li>\n<li>Can be used to delete old versions of files (if versioning is enabled)</li>\n<li>Can be used to delete incomplete Multi-Part uploads</li>\n</ul>\nRules can be created for a certain prefix (eg: s3://mybucket/mp3/*)\nRules can be created for certain objects Tags (eg:Department:Finance)'
+    }]
+  }, {
+    main: 'S3 Security',
+    child: [{
+      title: 'MFA Delete',
+      description: 'MFA required to:\n\n<ul>\n<li>Permanently delete an object version</li>\n<li>Suspend Versioning on bucket</li>\n</ul>\n[bold]MFA not required to:\n\n<ul>\n<li>Enable versioning</li>\n<li>List deleted versions</li>\n</ul>\nTo use MFA Delete, Versioning must be enabled on the bucket\nOnly bucket owner (root account) can enable/disable MFA Delete'
+    },
+    {
+      title: 'S3 Pre-signed URLs',
+      description: 'Generate pre-signed URLs using the S3 Console, AWS CLI, or SDK\nURL Expiration:\n\n<ul>\n<li>S3 Console - 1 min up to 720 mins (12 hours)</li>\n<li>AWS CLI - configure expiration with - expires-in parameter in seconds (default 3600 seconds, max 604800 secs ~ 168 hours</li>\n</ul>'
+    }, {
+      title: 'Glacier Vault Lock & S3 Object Lock',
+      description: '[bold]S3 Glacier Vault Lock\n\n<ul>\n<li>Adopt a WORM (Write Once, Read Many) model</li>\n<li>Create a Vault Lock Policy</li>\n<li>Lock the policy for future edits (objects can no longer be  changed or deleted)</li>\n<li>Helpful for compliance and data retention</li>\n</ul>\n[bold]S3 Object Lock (versioning must be enabled)\n\n<ul>\n<li>Adopt a WORM (Write Once, Read Many) model</li>\n<li>Block an object version deletion for a specified amount of time</li>\n<li>Retention mode - Compliance: Object versions cannot be overwritten or deleted by any user, including root user. Object retention modes cannot be changed, retention period cannot be shortened</li>\n<li>Retention mode - Governance: Most users cannot overwrite or delete an object verison or alter its lock settings. Some users have special permissions to change the retention or delete the object</li>\n<li>Retention Period: protect the object for a fixed period, it can be extended</li>\n<li>Legal Hold: Protect the object indefinitely, independent from retention period. Can be freely placed and removed using s3:PutObjectLegalHold IAM permission</li>\n</ul>'
+    }, {
+      title: '3',
+      description: '\n\n<ul>\n<li>Item 1</li>\n<li>Item 2</li>\n</ul>'
+    }, {
+      title: '4',
+      description: '\n\n<ul>\n<li>Item 1</li>\n<li>Item 2</li>\n</ul>'
+    }]
+  }, {
+    main: 'CloudFront & AWS Global Accelerator',
+    child: [{
+      title: 'CloudFront vs S3 Cross Region Replication',
+      description: '[bold]CloudFront\n\n<ul>\n<li>Global Edge network</li>\n<li>Files are cached for a TTL (maybe a day)</li>n<li>Great for static content that must be available everywhere</li>\n</ul>\n[bold]S3 Cross Region Replication\n\n<ul>\n<li>Must setup for each region you want replication to happen</li>\n<li>Files are updated in near real-time</li>n<li>Read only</li>n<li>Great for dynamic content that needs to be available at low-latency in few regions</li>\n</ul>'
+    },
+    {
+      title: 'AWS Global Accelerator',
+      description: '[img]globalAccelerator\n[img]globalAcceleratorVsCloudFront'
+    }]
+  }, {
+    main: 'AWS Storage Extras (Snow, Fsx...)',
+    child: [{
+      title: 'AWS Snow Family',
+      description: 'Offline devices to perform data migrations\nIf it takes more than a week to transfer over the network, use Snowball devices\n\n<ul>\n<li>Item 1</li>\n<li>Item 2</li>\n</ul>\n[img]snowballGlacier'
+    }, {
+      title: 'AWS Transfer Family',
+      description: '[img]transFam\n\n<ul>\n<li>Item 1</li>\n<li>Item 2</li>\n</ul>'
+    }, {
+      title: 'AWS Data Sync',
+      description: '[img]dataSync'
+    }]
+  }, {
+    main: 'SQS, SNS, Kinesis, Active MQ',
+    child: [{
+      title: 'Kinesis Data Streams vs Firehose',
+      description: '[img]kinesis'
+    }, {
+      title: 'SQS vs SNS vs Kinesis',
+      description: '[img]sqsSnsKinesis\n[bold]**Note**\nSQS FIFO queue support up to 300 messages per second(300 send, receive, or delete operations per second). Can batch up to a maximum of 10 messages, i.e. 3000 messages.'
+    }, {
+      title: 'Amazon MQ',
+      description: '[img]mq'
+    }]
+  }, {
+    main: 'Containers on AWS',
+    child: [{
+      title: 'ECS',
+      description: '[img]ec2LaunchType\n[img]fargate\n[img]ecsRoles'
+    }, {
+      title: 'AppRunner',
+      description: '[img]appRunner'
+    }]
+  }, {
+    main: 'Lambda, DynamoDB, API Gateway',
+    child: [{
+      title: 'Lambda Limits',
+      description: '[img]lambdaLimit'
+    }, {
+      title: 'Dynamo DB',
+      description: '[bold]DynamoDB Accelerator (DAX)\n\n<ul>\n<li>In-memory cache for DynamoDB</li>\n<li>Solve read congestion by caching</li>\n<li>5 minutes TTL for cache (default)</li>\n</ul>\n[img]dynamoDbStream\n[img]dynamoDBGlobal\n[bold]DynamoDB - Time To Live (TTL)\n\n<ul>\n<li>Automatically delete items after an expiry timestamp</li>\n<li>Use case: Reduce stored data by keeping only current items, adhere to regulatory obligations, web session handling....</li>\n</ul>\n[img]dynamoDbDR\n[img]dynamoDB'
+    }]
+  }, {
+    main: 'Database',
+    child: [{
+      title: 'DB',
+      description: '[img]db'
+    }]
+  }, {
+    main: 'Data & Analytics',
+    child: [{
+      title: 'Overview Gua',
+      description: 'Athena - Serverless query service to analyze data stored in Amazon S3\nRedShift - Faster than Athena due to indexes\nOpenSearch - Search any field, even partial matches, with ingestion from Kinesis Data Firehose, AWS IoT, CloudWatch Logs\nEMR (Elastic Map Reduce) - create Hadoop clusters (Big Data) to analyze and process data\nQuickSight - Interactive dashboard for business analytics, building visualizations, ad-hoc analysis with integration from RDS, Aurora, Athena, RedShift, S3...\nGlue - managed extract, transform and load (ETL) service. Useful to prepare and transform data for analytics\n[img]glue\n[img]lakeFormation'
+    }, {
+      title: 'DB2',
+      description: '\n\n<ul>\n<li>Item 1</li>\n<li>Item 2</li>\n</ul>'
+    }, {
+      title: 'DB3',
+      description: '\n\n<ul>\n<li>Item 1</li>\n<li>Item 2</li>\n</ul>'
+    }, {
+      title: 'DB4',
+      description: '\n\n<ul>\n<li>Item 1</li>\n<li>Item 2</li>\n</ul>'
+    }, {
+      title: 'DB5',
+      description: '\n\n<ul>\n<li>Item 1</li>\n<li>Item 2</li>\n</ul>'
+    }, {
+      title: 'DB6',
+      description: '\n\n<ul>\n<li>Item 1</li>\n<li>Item 2</li>\n</ul>'
+    },]
+  }, {
+    main: 'AWS Security',
+    child: [{
+      title: 'Amazon GuardDuty',
+      description: '[img]guardDuty'
+    }, {
+      title: 'Amazon Inspector',
+      description: '[img]inspector'
+    }, {
+      title: 'Amazon Macie',
+      description: '[img]macie'
+    }]
+  }, {
+    main: 'Amazon Cognito',
+    child: [{
+      title: 'Amazon Cognito',
+      description: '[bold]User Pools\nCreate a user pool when you want to authenticate and authorize users to your app or API.\n[bold]Identity Pools\nSet up an Amazon Cognito identity pool when you want to authorize authenticated or anonymous users to access your AWS resources.'
     }]
   }
   ];
