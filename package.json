@@ -1,7 +1,7 @@
 {
   "name": "react-essentials-start",
   "version": "0.0.0",
-  "homepage": "https://github.com/Barnbarn96/saa-notes",
+  "homepage": "https://Barnbarn96.github.io/saa-notes",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
